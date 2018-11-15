@@ -5,5 +5,6 @@
         "_site": true,
         ".**": true,
         "Gemfile*": true
-    }
+    },
+    "editor.tabSize": 2
 }
