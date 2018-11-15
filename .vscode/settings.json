@@ -1,0 +1,9 @@
+{
+    "files.exclude": {
+        "_config.yml": true,
+        "_redirects": true,
+        "_site": true,
+        ".**": true,
+        "Gemfile*": true
+    }
+}
