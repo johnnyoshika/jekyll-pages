@@ -16,8 +16,12 @@
   * `rbenv global 2.5.3`
 
 # Setup continued (All OS)
-* Install Jekyll and bundler gems
-  * `gem install jekyll bundler`
+* Install bundler
+  * `gem install bundler -v 1.17.1`
+  * Note: Windows 10 and bundler version 2.0.1:
+    * bundler version 2.0.1 (the default on 2019-01-23) on Windows 10 with computer 'Austin' didn't install, even though I saw the message `Successfully installed bundler-2.0.1`.
+    * Running `bundle install` afterwards resulted in: `find_spec_for_exe': can't find gem bundler (>= 0.a) with executable bundle (Gem::GemNotFoundException)`
+    * Installing bundler version 1.17.1 gets around this problem
 * Clone this repo
 * `cd` into this project folder
 * Install gems
