@@ -1,3 +1,63 @@
 .active {
   color: orange;
 }
+
+
+
+
+
+$base-unit: 16px;
+
+$properties: (
+  m: margin,
+  p: padding
+);
+
+$directions: (
+  all:  (suffix: null, up-to: xs),
+  v:    (suffix: v, up-to: xxs),
+  t:    (suffix: t, up-to: none),
+  b:    (suffix: b, up-to: none),
+  h:    (suffix: h, up-to: none),
+  l:    (suffix: l, up-to: none),
+  r:    (suffix: r, up-to: none)
+);
+
+$spacing-units: (
+	none:	  0,
+	xxs: 	  calc(0.25 * #{$base-unit}),
+	xs: 	  calc(0.5 * #{$base-unit}),
+	sm: 	  calc(0.75 * #{$base-unit}),
+	base: 	calc(1 * #{$base-unit}),
+	md: 	  calc(1.5 * #{$base-unit}),
+	lg: 	  calc(2 * #{$base-unit}),
+	xl: 	  calc(3 * #{$base-unit}),
+	x4: 	  calc(4 * #{$base-unit}),
+	x5: 	  calc(5 * #{$base-unit})
+);
+
+// To overcome SASS' index() limitation when used with maps,
+// key-index allows us to find map index from key only.
+@function key-index($map, $key) {
+  $keys: ();
+  @each $key, $val in $map {
+    $keys: append($keys, $key);
+  }
+  @return index($keys, $key);
+}
+
+@each $p-key, $p-val in $properties {
+  @each $d-key, $d-val in $directions {
+    @each $s-key, $s-val in $spacing-units {
+      @if index(($spacing-units), ($s-key $s-val)) <= key-index($spacing-units, map-get($d-val, up-to)) {
+        .u_#{$p-key}#{map-get($d-val, suffix)}-#{$s-key} {
+          @if (index((all v t), $d-key)) { #{$p-val}-top: $s-val; }
+          @if (index((all v b), $d-key)) { #{$p-val}-bottom: $s-val; }
+          @if (index((all h r), $d-key)) { #{$p-val}-right: $s-val; }
+          @if (index((all h l), $d-key)) { #{$p-val}-left: $s-val; }
+        }
+      }
+    }
+  }
+}
+
