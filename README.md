@@ -1,6 +1,11 @@
 # Setup (Windows)
 * Install RubyInstaller: https://rubyinstaller.org/downloads/
   * Choose the Ruby+Devkit option
+    * Choose v 2.5.X (e.g. `Ruby+Devkit 2.5.7-1 (x64)`)
+    * 2.6+ (e.g. `Ruby+Devkit 2.6.5-1 (x64)`) was problematic on Windows 10 with computer 'Seville' on 2020-01-24 and I got the following error when running command `bundle install`
+    ```
+    ffi-1.9.25-x64-mingw32 requires ruby version < 2.6, which is incompatible with...
+    ```
   * When prompted, enable MSYS2 installation
   * At the end, allow installer to initialize MSYS2 Devkit (`ridk install`)
 
