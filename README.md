@@ -1,13 +1,39 @@
 # Setup (Windows)
-* Install RubyInstaller: https://rubyinstaller.org/downloads/
-  * Choose the Ruby+Devkit option
-    * Choose v 2.5.X (e.g. `Ruby+Devkit 2.5.7-1 (x64)`)
-    * 2.6+ (e.g. `Ruby+Devkit 2.6.5-1 (x64)`) was problematic on Windows 10 with computer 'Seville' on 2020-01-24 and I got the following error when running command `bundle install`
-    ```
-    ffi-1.9.25-x64-mingw32 requires ruby version < 2.6, which is incompatible with...
-    ```
-  * When prompted, enable MSYS2 installation
-  * At the end, allow installer to initialize MSYS2 Devkit (`ridk install`)
+* With Scoop (recommended)
+  * Install [Scoop](https://scoop.sh/)
+  * Add `extras` and `versions` buckets:
+    * `scoop bucket add extras`
+    * `scoop bucket add versions`
+  * Find all available ruby versions:
+    * `scoop search ruby`
+  * Install latest ruby from `main` bucket and version 2.5 from `versions` bucket:
+    * `scoop install ruby ruby25`
+  * Install `MSYS2`
+    * `scoop install msys2`
+    * `msys2`
+    * When you see this:
+    > This is first start of MSYS2. You MUST restart shell to apply necessary actions.
+    * ...type `exit` <kbd>Enter</kbd>
+  * Install the `MSYS2` and `MINGW` development toolchain
+    * `ridk install`
+    * When asked which components to install, just hit <kbd>Enter</kbd>. I believe it selects option `3` by default.
+  * Check the ruby version:
+    * `ruby --version`
+  * Switch betweeen ruby versions
+    * `scoop reset ruby` -> to latest version
+    * `scoop reset ruby25` -> to version 2.5
+  * Make sure you're on version 2.5:
+    * `scoop reset ruby25`
+* With direct installer (not recommended)
+  * Install RubyInstaller: https://rubyinstaller.org/downloads/
+    * Choose the Ruby+Devkit option
+      * Choose v 2.5.X (e.g. `Ruby+Devkit 2.5.7-1 (x64)`)
+      * 2.6+ (e.g. `Ruby+Devkit 2.6.5-1 (x64)`) was problematic on Windows 10 with computer 'Seville' on 2020-01-24 and I got the following error when running command `bundle install`
+      ```
+      ffi-1.9.25-x64-mingw32 requires ruby version < 2.6, which is incompatible with...
+      ```
+    * When prompted, enable MSYS2 installation
+    * At the end, allow installer to initialize MSYS2 Devkit (`ridk install`)
 
 # Setup (macOS)
 * Update Homebrew: `brew update`
